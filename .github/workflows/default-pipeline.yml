@@ -25,7 +25,6 @@ jobs:
     name: Deploy DEV!
     runs-on: ubuntu-latest
     needs: build
-    environment: dev
     steps:
       - uses: actions/checkout@v3
 
