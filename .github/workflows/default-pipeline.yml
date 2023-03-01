@@ -28,8 +28,8 @@ jobs:
       - name: Build with Maven
         run: mvn clean install
 
-  deploy-dev:
-    name: Deploy DEV!
+  deploy-prod:
+    name: Deploy PROD!
     runs-on: ubuntu-latest
     needs: build
     steps:
@@ -46,4 +46,4 @@ jobs:
       - name: Deploy
         run: railway up
         env:
-          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN_DEV_D }}
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN_PROD }}
