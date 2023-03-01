@@ -26,7 +26,7 @@ jobs:
           restore-keys: ${{ runner.os }}-m2
 
       - name: Build with Maven
-        run: mvn -B package --file pom.xml
+        run: mvn clean install
 
   deploy-prod:
     name: Deploy PROD!
@@ -43,7 +43,7 @@ jobs:
       - name: Install Railway
         run: npm i -g @railway/cli
 
-      - uses: bervProject/railway-deploy@main
-        with:
-          railway_token: ${{ secrets.RAILWAY_TOKEN_PROD }}
-          service: "rpg-table-service"
+      - name: Deploy
+        run: railway up
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
