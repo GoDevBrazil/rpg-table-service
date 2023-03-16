@@ -4,6 +4,7 @@ CREATE TABLE accounts (
     email VARCHAR(100) NOT NULL UNIQUE,
     password VARCHAR(100) NOT NULL,
     avatar VARCHAR(100) DEFAULT 'default.png',
+    birthdate DATETIME NOT NULL,
     created_at DATETIME NOT NULL,
     updated_at DATETIME NOT NULL,
 
