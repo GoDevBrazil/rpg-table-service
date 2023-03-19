@@ -3,6 +3,8 @@ name: Path To Production
 on:
   push:
     branches: [ "main" ]
+  pull_request:
+    types: [ opened, synchronize, reopened ]
 
 jobs:
   build:
@@ -16,21 +18,27 @@ jobs:
           java-version: '17'
           distribution: 'zulu'
           cache: maven
+      - name: Cache Maven packages
+        uses: actions/cache@v1
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+
       - name: Build with Maven
         run: mvn clean install
 
-  deploy-dev:
-    name: Deploy DEV!
+  deploy-prod:
+    name: Deploy PROD!
     runs-on: ubuntu-latest
     needs: build
-    environment: dev
     steps:
       - uses: actions/checkout@v3
 
-      - name: Use Node 16
-        uses: actions/setup-node@v2
+      - name: Use Node 18
+        uses: actions/setup-node@v3
         with:
-          node-version: 16.x
+          node-version: 18.x
 
       - name: Install Railway
         run: npm i -g @railway/cli
@@ -38,4 +46,4 @@ jobs:
       - name: Deploy
         run: railway up
         env:
-          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN_DEV_D }}
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN_PROD }}
