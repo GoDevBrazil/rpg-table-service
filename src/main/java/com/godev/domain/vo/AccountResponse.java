@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.time.OffsetDateTime;
 
 @Data
@@ -17,7 +18,7 @@ public class AccountResponse {
     private String username;
     private String email;
     private String avatar;
-    private OffsetDateTime birthdate;
+    private LocalDate birthdate;
     private OffsetDateTime createdAt;
     private OffsetDateTime updatedAt;
 }

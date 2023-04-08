@@ -6,8 +6,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.time.OffsetDateTime;
-import java.time.ZoneOffset;
+
 
 @Data
 @NoArgsConstructor
@@ -29,14 +30,15 @@ public class Account {
     @Column(length = 72, nullable = false)
     private String password;
 
-    @Column(length = 100)
-    private String avatar = "default.png";
+    @Column(length = 100, nullable = false)
+    private String avatar;
 
     @Column(nullable = false)
-    private OffsetDateTime birthdate;
+    private LocalDate birthdate;
 
     @Column(nullable = false)
     private OffsetDateTime createdAt;
 
-    private OffsetDateTime updatedAt = OffsetDateTime.now(ZoneOffset.UTC);
+    @Column(nullable = false)
+    private OffsetDateTime updatedAt;
 }
