@@ -26,8 +26,10 @@ public class AccountServiceImpl implements AccountService {
                 .withUsername(accountRequest.getUsername())
                 .withEmail(accountRequest.getEmail())
                 .withPassword(accountRequest.getPassword())
+                .withAvatar("default.png")
                 .withBirthdate(accountRequest.getBirthdate())
                 .withCreatedAt(OffsetDateTime.now(ZoneOffset.UTC))
+                .withUpdatedAt(OffsetDateTime.now(ZoneOffset.UTC))
                 .build();
 
         var accountSaved = accountRepository.save(account);
