@@ -6,7 +6,6 @@ import com.godev.domain.vo.AccountResponse;
 import com.godev.rest.controller.AccountController;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,7 +19,7 @@ public class AccountControllerImpl implements AccountController {
         this.accountService = accountService;
     }
 
-    @PostMapping
+
     @Override
     public ResponseEntity<AccountResponse> register(AccountRequest accountRequest) {
         var accountResponse = accountService.register(accountRequest);
