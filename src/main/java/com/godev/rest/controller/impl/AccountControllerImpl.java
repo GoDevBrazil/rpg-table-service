@@ -25,4 +25,10 @@ public class AccountControllerImpl implements AccountController {
         var accountResponse = accountService.register(accountRequest);
         return ResponseEntity.status(HttpStatus.CREATED).body(accountResponse);
     }
+
+    @Override
+    public ResponseEntity<AccountResponse> findUser(String user) {
+        var accountResponse = accountService.findUser(user);
+        return ResponseEntity.ok(accountResponse);
+    }
 }

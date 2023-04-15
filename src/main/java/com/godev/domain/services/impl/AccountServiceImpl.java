@@ -45,4 +45,14 @@ public class AccountServiceImpl implements AccountService {
                 .withUpdatedAt(accountSaved.getUpdatedAt())
                 .build();
     }
+
+    @Override
+    public AccountResponse findUser(String user) {
+        var accountSaved = accountRepository.findByUsernameOrEmail(user, user).orElse(null);
+
+        return AccountResponse
+                .builder()
+                .withUsername(accountSaved.getUsername())
+                .build();
+    }
 }
